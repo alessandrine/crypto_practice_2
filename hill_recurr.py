@@ -1,6 +1,15 @@
 import numpy as np
 from math import gcd
 
+def cofactor_matr(matrix):
+    minor_matr = np.zeros(matrix.shape)
+    for i in range(matrix.shape[0]):
+        for j in range(matrix.shape[1]):
+            minor = np.delete(matrix, i, axis=0) # delete i-string
+            minor = np.delete(minor, j, axis=1) # delete j-column
+            minor_matr[i, j] = (-1)**(i+j) * np.linalg.det(minor)
+    return minor_matr.round().astype(int)
+
 
 def key_check(matr, m):
     det = np.linalg.det(matr)
@@ -61,16 +70,14 @@ def hill_recurr(alphabet, text, key_str1, key_str2, type_e_d='e'):
         if type_e_d == 'd':
             det = int(np.round(np.linalg.det(key))) % m
             inv_det = pow(det, -1, m)
+            adjoint_matr = np.transpose(cofactor_matr(key))
+            key_inv = (inv_det * adjoint_matr) % m
 
-            adj = np.matrix([[key[1, 1], -key[0, 1]],
-                             [-key[1, 0], key[0, 0]]])
-            key_inv = (inv_det * adj) % m
-
-            res = (key_inv * vect) % m
-            output += to_letters(res, ord(alphabet[0]))
+            result = (key_inv * vect) % m
+            output += to_letters(result, ord(alphabet[0]))
         elif type_e_d == 'e':
-            res = (key * vect) % m
-            output += to_letters(res, ord(alphabet[0]))
+            result = (key * vect) % m
+            output += to_letters(result, ord(alphabet[0]))
 
         key_prev_prev = key_prev
         key_prev = key

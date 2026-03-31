@@ -8,6 +8,15 @@ from math import gcd
 Её определитель (det) не должен быть равен 0 и НОД(det, m) == 1.
 '''
 
+def cofactor_matr(matrix):
+    minor_matr = np.zeros(matrix.shape)
+    for i in range(matrix.shape[0]):
+        for j in range(matrix.shape[1]):
+            minor = np.delete(matrix, i, axis=0) # delete i-string
+            minor = np.delete(minor, j, axis=1) # delete j-column
+            minor_matr[i, j] = (-1)**(i+j) * np.linalg.det(minor)
+    return minor_matr.round().astype(int)
+
 
 def key_check(matr, m):
     det = np.linalg.det(matr)
@@ -55,7 +64,12 @@ def hill(alphabet, text, key_str, type_e_d='e'):
             y = key * vect % m
             output += to_letters(y, ord(alphabet[0]))
         elif type_e_d == 'd':
-            x = (np.linalg.inv(key).round() * vect % m).astype(int)
+            det = int(np.round(np.linalg.det(key))) % m
+            inv_det = pow(det, -1, m)
+            adjoint_matr = np.transpose(cofactor_matr(key))
+            key_inv = (inv_det * adjoint_matr) % m
+
+            x = (key_inv * vect % m).astype(int)
             output += to_letters(x, ord(alphabet[0]))
         else:
             return "Пожалуйста, выберите режим зашифрования или расшифрования, перезапустив программу."
