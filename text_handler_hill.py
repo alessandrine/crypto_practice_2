@@ -1,5 +1,5 @@
 #file_input, file_output = [x for x in input("Введите через пробел названия файлов ввода и вывода: ").split()]
-file_input, file_output = "message_hill_unprepared-2.txt", "message_hill-2.txt"
+file_input, file_output = "message_hill_unprepared.txt", "message_hill.txt"
 with open(file_input, 'r', encoding='utf-8') as text_file:
     text = text_file.read()
     temp = []

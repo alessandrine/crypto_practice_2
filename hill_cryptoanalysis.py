@@ -23,6 +23,8 @@ def to_str_from_matr(x):
     for string in x:
         res_str_arr.append(" ".join([str(i) for i in string]))
     res_str = ";".join(res_str_arr)
+    res_str = res_str.replace("[", "]")
+    res_str = res_str.replace("]", "")
     return res_str
 
 # file_input = input("Введите название файла с шифртекстом: ")
@@ -73,7 +75,3 @@ p1_inv = (inv_det * adjoint_matr) % 26
 key = to_str_for_matr(y1) * p1_inv % 26
 print("Ключ 5х5:\n", key)
 print("Ключ 5х5 в формате строки:\n", to_str_from_matr(key))
-
-# key = "2 3 1 5 4;3 5 2 1 1;1 2 4 3 2;5 1 3 6 1;4 1 2 1 7"
-
-
