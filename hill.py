@@ -83,4 +83,6 @@ key_h = input(
     f"Введите в качестве ключа\nквадратную матрицу, обратимую по модулю {len(alph_h)},\nв формате 'x11 x12 ... x1n;x21 x22 ... x2n; ...':\n")
 type_e_d_h = input(
     "Выберите режим: чтобы произвести зашифрование (encryption),\nвведите «e» без кавычек; для расшифрования (decryption)\n– «d» аналогично: ")
-print(hill(alph_h, text_h, key_h, type_e_d_h))
+print(out:=hill(alph_h, text_h, key_h, type_e_d_h))
+with open("ciphertext_hill-2.txt", 'w') as f_out:
+    f_out.write(out)

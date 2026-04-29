@@ -12,7 +12,7 @@ def cofactor_matr(matrix):
 
 
 def key_check(matr, m):
-    det = np.linalg.det(matr)
+    det = int(np.round(np.linalg.det(matr))) % 26
     if det != 0:
         if gcd(int(det), m) == 1:
             return True
