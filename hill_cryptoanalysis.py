@@ -34,7 +34,7 @@ file_plain = "plaintext_hill.txt"
 
 with open(file_input, 'r', encoding='utf-8') as f_input:
     ciphertext = f_input.readline().strip()
-print(ciphertext, len(ciphertext)) # число 15 имеет делители 15, 5, 3, 1
+print(ciphertext, len(ciphertext)) # число 75 имеет делители 75, 25, 15, 5, 3, 1
 with open(file_plain, 'r', encoding='utf-8') as f_plain:
     plaintext = f_plain.readline().strip()
 print(plaintext, len(plaintext)) # 25 данных символов хватает на проверку гипотезы с делителями 3 и 5
