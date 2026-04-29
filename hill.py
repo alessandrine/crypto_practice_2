@@ -84,5 +84,3 @@ key_h = input(
 type_e_d_h = input(
     "Выберите режим: чтобы произвести зашифрование (encryption),\nвведите «e» без кавычек; для расшифрования (decryption)\n– «d» аналогично: ")
 print(out:=hill(alph_h, text_h, key_h, type_e_d_h))
-# with open("ciphertext_hill-2.txt", 'w') as f_out:
-#     f_out.write(out)
